@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Menu — Basantapur Square</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "on-background": "#ede0dc",
+                    "tertiary": "#e9c349",
+                    "outline-variant": "#5a403c",
+                    "primary": "#ffb4ac",
+                    "background": "#181210",
+                    "secondary": "#ecbcaa",
+                    "outline": "#aa8984",
+                    "surface-container-lowest": "#130d0b",
+                    "surface-container-low": "#201a18",
+                    "surface-container": "#251e1c",
+                    "surface-container-high": "#2f2826",
+                    "surface-tint": "#ffb4ac",
+                    "surface-bright": "#3f3835",
+                    "tertiary-container": "#cca730",
+                    "on-tertiary": "#3c2f00",
+                    "surface-variant": "#3b3331",
+                    "primary-container": "#880b11",
+                    "surface-container-highest": "#3b3331",
+                    "on-primary-container": "#ff9085",
+                    "on-tertiary-container": "#4f3e00",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "on-primary": "#690007",
+                    "on-surface": "#ede0dc",
+                    "on-surface-variant": "#e3beb8",
+                    "secondary-container": "#613e31",
+                    "on-secondary": "#47291d",
+                    "surface": "#181210",
+                    "primary-fixed": "#ffdad6"
+                },
+                borderRadius: {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+                },
+                fontFamily: {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Manrope", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"]
+                }
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .gilded-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, #e9c349 50%, transparent 100%);
+        opacity: 0.35;
+    }
+    .menu-item:not(:last-child) {
+        border-bottom: 1px solid rgba(90, 64, 60, 0.2);
+    }
+</style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-tertiary/30">
+
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-stone-950/80 backdrop-blur-xl shadow-[0_10px_30px_-15px_rgba(65,0,2,0.1)]">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
+        <a href="index.html" class="text-2xl font-serif italic text-stone-100">Basantapur Square</a>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-amber-400 font-bold border-b border-amber-400/30 pb-1" href="menu.html">Menu</a>
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="food-trucks.html">Food Truck</a>
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="#">About</a>
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="contact.html">Contact</a>
+        </div>
+        <a href="contact.html" class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-medium hover:scale-105 active:scale-95 transition-all duration-300">
+            Book a Table
+        </a>
+    </div>
+</nav>
+
+<main class="pt-32 pb-20">
+    <!-- Hero -->
+    <header class="max-w-4xl mx-auto px-6 mb-20 text-center">
+        <span class="text-tertiary font-label tracking-[0.3em] text-xs uppercase mb-4 block">Crafted with Intention</span>
+        <h1 class="font-headline text-5xl md:text-7xl font-light italic mb-6">The Menu</h1>
+        <p class="max-w-2xl mx-auto text-on-surface-variant text-lg leading-relaxed">
+            Every dish is a journey through the Himalayan highlands — ancient recipes reinterpreted with the finest local ingredients.
+        </p>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-6 space-y-20">
+
+        <!-- Small Plates -->
+        <section>
+            <div class="flex items-center gap-6 mb-10">
+                <div>
+                    <span class="text-tertiary font-label tracking-[0.2em] text-xs uppercase block mb-1">To Begin</span>
+                    <h2 class="font-headline text-4xl italic">Small Plates</h2>
+                </div>
+                <div class="flex-1 gilded-divider"></div>
+            </div>
+            <div class="space-y-0">
+                <div class="menu-item py-6 flex justify-between items-start gap-6">
+                    <div class="flex-1">
+                        <h3 class="font-headline text-xl italic text-on-surface mb-1">Jhol Momo Blanc</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Premium steamed dumplings in a roasted sesame and heirloom tomato broth, garnished with fresh Jimbu.</p>
+                    </div>
+                    <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 850</span>
+                </div>
+                <div class="menu-item py-6 flex justify-between items-start gap-6">
+                    <div class="flex-1">
+                        <h3 class="font-headline text-xl italic text-on-surface mb-1">Sekuwa Skewers</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Char-grilled highland meat with house-smoked chutney, pickled mustard greens, and warm sel roti.</p>
+                    </div>
+                    <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 1,100</span>
+                </div>
+                <div class="menu-item py-6 flex justify-between items-start gap-6">
+                    <div class="flex-1">
+                        <h3 class="font-headline text-xl italic text-on-surface mb-1">Aloo Sadeko</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Spiced boiled potatoes tossed with sesame oil, fenugreek, timur pepper, and fresh herbs.</p>
+                    </div>
+                    <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 550</span>
+                </div>
+                <div class="menu-item py-6 flex justify-between items-start gap-6">
+                    <div class="flex-1">
+                        <h3 class="font-headline text-xl italic text-on-surface mb-1">Choila Platter</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Traditional flame-charred Newari buffalo, spiced with ginger, garlic, and Himalayan spices. Served with beaten rice.</p>
+                    </div>
+                    <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 1,250</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mains -->
+        <section>
+            <div class="flex items-center gap-6 mb-10">
+                <div>
+                    <span class="text-tertiary font-label tracking-[0.2em] text-xs uppercase block mb-1">The Heart</span>
+                    <h2 class="font-headline text-4xl italic">Main Courses</h2>
+                </div>
+                <div class="flex-1 gilded-divider"></div>
+            </div>
+            <div class="space-y-0">
+                <div class="menu-item py-6 flex justify-between items-start gap-6">
+                    <div class="flex-1">
+                        <h3 class="font-headline text-xl italic text-on-surface mb-1">Thakali Dal Bhat Set</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">The legendary complete meal — slow-cooked lentils, steamed rice, seasonal vegetable tarkari, pickles, and papad. Unlimited refills.</p>
+                        <span class="text-xs text-tertiary/70 mt-1 block">Signature · Veg available</span>
+                    </div>
+                    <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 1,400</span>
+                </div>
+                <div class="menu-item py-6 flex justify-between items-start gap-6">
+                    <div class="flex-1">
+                        <h3 class="font-headline text-xl italic text-on-surface mb-1">Lamb Curry Box</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Slow-simmered highland lamb in an aromatic spice base, served with hand-torn roti and cucumber raita.</p>
+                    </div>
+                    <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 1,800</span>
+                </div>
+                <div class="menu-item py-6 flex justify-between items-start gap-6">
+                    <div class="flex-1">
+                        <h3 class="font-headline text-xl italic text-on-surface mb-1">Yak Burger</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Seasoned yak patty on a house-baked bun with Jimbu aioli, aged cheese, and hand-cut local fries.</p>
+                    </div>
+                    <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 1,600</span>
+                </div>
+                <div class="menu-item py-6 flex justify-between items-start gap-6">
+                    <div class="flex-1">
+                        <h3 class="font-headline text-xl italic text-on-surface mb-1">Vegetable Curry Thali</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">A celebration of the valley's seasonal harvest — three rotating curries, rice, dal, and house-made achaar.</p>
+                        <span class="text-xs text-tertiary/70 mt-1 block">Vegan · Gluten-free option available</span>
+                    </div>
+                    <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 1,100</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Drinks -->
+        <section>
+            <div class="flex items-center gap-6 mb-10">
+                <div>
+                    <span class="text-tertiary font-label tracking-[0.2em] text-xs uppercase block mb-1">The Alchemist</span>
+                    <h2 class="font-headline text-4xl italic">Drinks</h2>
+                </div>
+                <div class="flex-1 gilded-divider"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <!-- Cocktails -->
+                <div>
+                    <p class="text-xs uppercase tracking-widest text-outline mb-6">Signatures</p>
+                    <div class="space-y-0">
+                        <div class="menu-item py-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h3 class="font-headline text-lg italic text-on-surface mb-1">The Spice Route</h3>
+                                <p class="text-on-surface-variant text-xs">Smoked cinnamon whiskey, local honey, Timut pepper</p>
+                            </div>
+                            <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 1,200</span>
+                        </div>
+                        <div class="menu-item py-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h3 class="font-headline text-lg italic text-on-surface mb-1">Mountain Mist</h3>
+                                <p class="text-on-surface-variant text-xs">Gin, Himalayan herbs, elderflower, lemon zest</p>
+                            </div>
+                            <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 1,150</span>
+                        </div>
+                        <div class="menu-item py-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h3 class="font-headline text-lg italic text-on-surface mb-1">Himalayan Mule</h3>
+                                <p class="text-on-surface-variant text-xs">Khukri rum, ginger beer, lime, Timur bitters</p>
+                            </div>
+                            <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 980</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Non-Alcoholic -->
+                <div>
+                    <p class="text-xs uppercase tracking-widest text-outline mb-6">Non-Alcoholic</p>
+                    <div class="space-y-0">
+                        <div class="menu-item py-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h3 class="font-headline text-lg italic text-on-surface mb-1">Masala Chai</h3>
+                                <p class="text-on-surface-variant text-xs">House-spiced milk tea with cardamom, ginger, cinnamon</p>
+                            </div>
+                            <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 250</span>
+                        </div>
+                        <div class="menu-item py-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h3 class="font-headline text-lg italic text-on-surface mb-1">Lassi of the Day</h3>
+                                <p class="text-on-surface-variant text-xs">Rotating seasonal fruit lassi, made fresh daily</p>
+                            </div>
+                            <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 350</span>
+                        </div>
+                        <div class="menu-item py-5 flex justify-between items-start gap-4">
+                            <div>
+                                <h3 class="font-headline text-lg italic text-on-surface mb-1">Lemon Turmeric Water</h3>
+                                <p class="text-on-surface-variant text-xs">Still or sparkling, infused with turmeric and raw honey</p>
+                            </div>
+                            <span class="text-tertiary font-bold text-sm whitespace-nowrap">NPR 200</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="text-center py-10">
+            <p class="text-on-surface-variant mb-6">Ready for the full experience?</p>
+            <a href="contact.html" class="inline-block bg-gradient-to-r from-primary-container to-primary text-on-primary-fixed px-12 py-4 rounded-lg font-bold tracking-widest uppercase hover:brightness-110 active:scale-[0.98] transition-all">
+                Reserve a Table
+            </a>
+        </div>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="w-full border-t border-stone-800/30 bg-stone-950">
+    <div class="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center text-sm">
+        <div class="text-lg font-serif text-stone-300 italic mb-6 md:mb-0">Basantapur Square</div>
+        <div class="flex flex-wrap justify-center gap-8 mb-6 md:mb-0">
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Privacy Policy</a>
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Terms of Service</a>
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="contact.html">Location</a>
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Careers</a>
+        </div>
+        <div class="text-stone-500">© 2024 Basantapur Square. All rights reserved.</div>
+    </div>
+</footer>
+
+</body>
+</html>

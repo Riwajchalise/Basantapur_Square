@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Basantapur Square</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "on-background": "#ede0dc",
+                    "on-error": "#690005",
+                    "tertiary": "#e9c349",
+                    "secondary-fixed": "#ffdbce",
+                    "inverse-primary": "#b02d29",
+                    "on-primary-fixed-variant": "#8e1214",
+                    "tertiary-fixed": "#ffe088",
+                    "outline-variant": "#5a403c",
+                    "primary": "#ffb4ac",
+                    "secondary-fixed-dim": "#ecbcaa",
+                    "on-secondary-fixed-variant": "#613e31",
+                    "background": "#181210",
+                    "secondary": "#ecbcaa",
+                    "outline": "#aa8984",
+                    "inverse-on-surface": "#362f2c",
+                    "surface-container-lowest": "#130d0b",
+                    "error": "#ffb4ab",
+                    "surface-container-low": "#201a18",
+                    "surface-container": "#251e1c",
+                    "surface-dim": "#181210",
+                    "surface-container-high": "#2f2826",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "surface-tint": "#ffb4ac",
+                    "on-primary-fixed": "#410002",
+                    "surface-bright": "#3f3835",
+                    "tertiary-container": "#cca730",
+                    "on-tertiary": "#3c2f00",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed": "#2e140a",
+                    "surface-variant": "#3b3331",
+                    "primary-container": "#880b11",
+                    "surface-container-highest": "#3b3331",
+                    "on-primary-container": "#ff9085",
+                    "on-tertiary-container": "#4f3e00",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "error-container": "#93000a",
+                    "on-primary": "#690007",
+                    "on-surface": "#ede0dc",
+                    "on-surface-variant": "#e3beb8",
+                    "inverse-surface": "#ede0dc",
+                    "on-secondary-container": "#daab9a",
+                    "secondary-container": "#613e31",
+                    "on-secondary": "#47291d",
+                    "surface": "#181210",
+                    "primary-fixed": "#ffdad6"
+                },
+                borderRadius: {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+                },
+                fontFamily: {
+                    "headline": ["Cormorant Garamond", "serif"],
+                    "body": ["Manrope", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"]
+                }
+            },
+        },
+    }
+</script>
+<style>
+    body { font-family: 'Manrope', sans-serif; background-color: #181210; color: #ede0dc; }
+    .font-serif { font-family: 'Cormorant Garamond', serif; }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .gilded-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, #e9c349 50%, transparent 100%);
+        opacity: 0.4;
+    }
+
+    /* ── Loader ── */
+    #page-loader {
+        position: fixed; inset: 0; z-index: 99999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        background: #181210;
+        transition: opacity 0.9s ease, visibility 0.9s ease;
+    }
+    #page-loader.hidden { opacity: 0; visibility: hidden; }
+
+    .loader-ring-outer {
+        position: absolute;
+        width: 120px; height: 120px;
+        border-radius: 50%;
+        border: 1.5px solid transparent;
+        border-top-color: #e9c349;
+        border-right-color: #e9c349cc;
+        animation: loaderSpin 1.6s linear infinite;
+    }
+    .loader-ring-inner {
+        position: absolute;
+        width: 108px; height: 108px;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        border-bottom-color: #e9c34966;
+        border-left-color: #e9c34933;
+        animation: loaderSpin 2.4s linear infinite reverse;
+    }
+    .loader-logo-img {
+        width: 84px; height: 84px;
+        border-radius: 50%;
+        object-fit: cover;
+        animation: loaderScaleIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                   loaderBreath 3s ease-in-out 0.7s infinite;
+        opacity: 0;
+        box-shadow: 0 0 0 1px rgba(233,195,73,0.2), 0 0 32px rgba(233,195,73,0.08);
+    }
+    .loader-name {
+        margin-top: 2rem;
+        font-family: 'Cinzel', serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.35em;
+        color: #aa8984;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: loaderTextReveal 1s ease forwards 0.9s;
+    }
+    .loader-tagline {
+        margin-top: 0.5rem;
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        color: #5a403c;
+        opacity: 0;
+        animation: loaderTextReveal 1s ease forwards 1.3s;
+    }
+    @keyframes loaderSpin {
+        to { transform: rotate(360deg); }
+    }
+    @keyframes loaderScaleIn {
+        from { transform: scale(0.75); opacity: 0; }
+        to   { transform: scale(1);    opacity: 1; }
+    }
+    @keyframes loaderBreath {
+        0%, 100% { transform: scale(1); }
+        50%       { transform: scale(1.04); }
+    }
+    @keyframes loaderTextReveal {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes wordReveal {
+        from { opacity: 0; transform: translateY(28px); filter: blur(6px); }
+        to   { opacity: 1; transform: translateY(0);   filter: blur(0); }
+    }
+    @keyframes fadeInSub {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    .word-reveal {
+        display: inline-block;
+        opacity: 0;
+    }
+    .word-reveal.animate {
+        animation: wordReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .fade-in-sub {
+        opacity: 0;
+    }
+    .fade-in-sub.animate {
+        animation: fadeInSub 1.2s ease forwards;
+    }
+    @keyframes arrowBounce {
+        0%, 100% { transform: translateX(0); }
+        50%       { transform: translateX(9px); }
+    }
+    .arrow-bounce {
+        display: inline-block;
+        animation: arrowBounce 1.1s ease-in-out infinite;
+    }
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary/30">
+
+<!-- Page Loader -->
+<div id="page-loader">
+    <div class="relative flex items-center justify-center" style="width:120px;height:120px;">
+        <div class="loader-ring-outer"></div>
+        <div class="loader-ring-inner"></div>
+        <img src="logo.jpg" alt="Basantapur Square" class="loader-logo-img"/>
+    </div>
+    <p class="loader-name">Basantapur Square</p>
+    <p class="loader-tagline">Glenroy, Melbourne</p>
+</div>
+
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-stone-950/80 backdrop-blur-xl shadow-[0_10px_30px_-15px_rgba(65,0,2,0.1)]">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
+        <a href="index.html">
+            <img src="logo.jpg" alt="Basantapur Square" class="h-10 w-10 rounded-full object-cover ring-1 ring-tertiary/30"/>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="menu.html">Menu</a>
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="food-trucks.html">Food Truck</a>
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="#">About</a>
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="contact.html">Contact</a>
+        </div>
+        <a href="contact.html" class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-md font-medium hover:scale-95 transition-transform duration-150 shadow-lg">
+            Book a Table
+        </a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <video autoplay muted loop playsinline class="w-full h-full object-cover brightness-50">
+            <source src="hero.mp4" type="video/mp4"/>
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background"></div>
+    </div>
+    <div class="relative z-10 text-center px-6 max-w-5xl">
+        <h1 class="font-light mb-10 leading-[1.15] text-on-surface" style="font-family: 'Cinzel', serif;">
+            <!-- Line 1: Quench Your Thirst -->
+            <span class="block text-5xl md:text-7xl lg:text-8xl tracking-widest">
+                <span class="word-reveal">Quench</span>
+                <span class="word-reveal"> Your</span>
+                <span class="word-reveal"> Thirst</span>
+            </span>
+            <!-- Line 2: at Basantapur Square → -->
+            <span class="block mt-2">
+                <span class="word-reveal text-on-surface/40 text-2xl md:text-3xl lg:text-4xl tracking-[0.4em] font-light">at </span><a
+                    href="https://www.google.com/maps/place/Basantapur+Square/@-37.7046058,144.9138142,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad65b003bf30675:0x3b671a5576672a13!8m2!3d-37.7046058!4d144.9163891!16s%2Fg%2F11mrxkzw0_?entry=ttu&g_ep=EgoyMDI2MDUxMS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank" rel="noopener noreferrer"
+                    class="word-reveal text-tertiary text-4xl md:text-6xl lg:text-7xl tracking-widest underline decoration-tertiary/50 underline-offset-[10px] decoration-1 hover:decoration-tertiary hover:decoration-2 transition-all">Basantapur Square<span class="arrow-bounce ml-3 md:ml-4 text-2xl md:text-3xl not-italic">→</span></a>
+            </span>
+        </h1>
+        <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+            <a href="contact.html" class="bg-gradient-to-r from-primary-container to-primary text-on-primary px-10 py-4 rounded-md text-lg font-semibold hover:opacity-90 transition-all flex items-center gap-2">
+                Book a Table
+                <span class="material-symbols-outlined text-lg">calendar_month</span>
+            </a>
+            <a href="menu.html" class="px-10 py-4 rounded-md text-lg font-medium border border-tertiary/20 text-tertiary hover:bg-tertiary/5 transition-all">
+                View Our Menu
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Food Truck Fleet Section -->
+<section class="py-24 px-6 bg-surface">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-tertiary font-serif italic text-3xl mb-4">The Fleet</h2>
+            <h3 class="text-5xl md:text-6xl font-serif text-on-surface mb-8 leading-tight">Our Nomadic Kitchens</h3>
+            <p class="text-on-surface-variant text-lg max-w-2xl mx-auto font-light">
+                Bringing the hearth to the streets. Five unique concepts, one shared spirit of Himalayan warmth.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <!-- The Momo Wagon -->
+            <a href="food-trucks.html" class="group cursor-pointer bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden transition-all hover:bg-surface-container-high hover:-translate-y-2 shadow-lg flex flex-col">
+                <div class="aspect-square bg-surface-container-highest overflow-hidden">
+                    <img alt="The Momo Wagon" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhZaFAo71BovShSSrmc7GLHRj_jKaoBw19_NfxdseLn60hnbJYTZcXj4W-Kk0SqqQqiWqGvUS4LWXpbIGWN5T3c1AySJDRsW1MpJImcFN9Gm_vrpd6xzQ0RraOoJXHqUwYJjl3YufY1SRdmqgm1pnBwJXwEJ-iRLZmU6lkZcrv-KFZDVPRjBsFY5sDTFdRmsbz7lu0xBOba5dWyIBs0Nqu13z1y3udguXVH7QUs_nWWoK4Lfpw8BnsBSrOZYNpY76o15RPh7JyEeUA"/>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h4 class="text-xl font-serif text-primary mb-2">The Momo Wagon</h4>
+                    <p class="text-on-surface-variant text-sm font-light mb-4 line-clamp-2">The original street classic, serving handcrafted dumplings at city corners.</p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs uppercase tracking-widest text-tertiary font-bold">Key Dish:</span>
+                        <span class="text-xs text-on-surface font-medium italic">Jhol Momos</span>
+                    </div>
+                </div>
+            </a>
+            <!-- Himalayan Grill -->
+            <a href="food-trucks.html" class="group cursor-pointer bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden transition-all hover:bg-surface-container-high hover:-translate-y-2 shadow-lg flex flex-col">
+                <div class="aspect-square bg-surface-container-highest overflow-hidden">
+                    <img alt="Himalayan Grill" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrPZmHrvPB74cdUjjnpiceLJcjOzG5tE4RVoJKOVZ3OlBZTMxYTNGFuaAqos2NUoDoYqGmiQSzQZOJkqIUgHSQNOT1-7iCKhhBSRSxl83HaESNyhMB03IrMW4ehRn8p5VMJ1KLHXJL6qA3Gh6ngXjVtnVDtNEEsbYMpUZD-Z7HmBj-XhgdK1tOHaBmUyCOr5EnCWG4l-98E0E5vN6AdslHHUjts7wMYx31f7QUWlF6dbJ2AGsqtAf4BlMz0oCPswmWkb-jgid04qpG"/>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h4 class="text-xl font-serif text-primary mb-2">Himalayan Grill</h4>
+                    <p class="text-on-surface-variant text-sm font-light mb-4 line-clamp-2">Smoky flavors of the highlands, char-grilled over real mountain wood.</p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs uppercase tracking-widest text-tertiary font-bold">Key Dish:</span>
+                        <span class="text-xs text-on-surface font-medium italic">Sekuwa Skewers</span>
+                    </div>
+                </div>
+            </a>
+            <!-- Curry Cruiser -->
+            <a href="food-trucks.html" class="group cursor-pointer bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden transition-all hover:bg-surface-container-high hover:-translate-y-2 shadow-lg flex flex-col">
+                <div class="aspect-square bg-surface-container-highest overflow-hidden">
+                    <img alt="Curry Cruiser" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk4WX61AEJKhV3f5uONLtnV7o8q6rdcDeitrzFSTRE--iBd6IkuGr5UA7kIIESlxl2r1-HmIIggzibj3AISZX8KLNSlvvrR8M7OGf5sxjIWCMb3yX9UdNxXChAIwS64wS4MwXPlC3HphcQL6ElFrprqW1BNQ5rwYDqUN1Ldw8GOmFpTyubg09SUo9FQlDYZD5zSg8gEXdmihDWy6Sd3GDA_fuh09dQobmBLgwdBkdWb68wxSWaa8OV7GVfTgzF2EvTThB7rWjXBESr"/>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h4 class="text-xl font-serif text-primary mb-2">Curry Cruiser</h4>
+                    <p class="text-on-surface-variant text-sm font-light mb-4 line-clamp-2">Rich, aromatic stews simmered for hours for that perfect comfort in a bowl.</p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs uppercase tracking-widest text-tertiary font-bold">Key Dish:</span>
+                        <span class="text-xs text-on-surface font-medium italic">Lamb Curry Box</span>
+                    </div>
+                </div>
+            </a>
+            <!-- Spice Route -->
+            <a href="food-trucks.html" class="group cursor-pointer bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden transition-all hover:bg-surface-container-high hover:-translate-y-2 shadow-lg flex flex-col">
+                <div class="aspect-square bg-surface-container-highest overflow-hidden">
+                    <img alt="Spice Route" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC97YWGcCcehVCEaiMzBZlhSfGfh_oNqKLj05d_1mq44v4RrjVAUH8BL7JG3RBXam0Bi-kASx7li37-Ey58Q6Cxy51tYEDTaFe8VTzhldfsyUhxkWbnOqTC0Bk7TNdgBj6nTZhndttxYsZX48_xcfLY9ZZMgS_b1_8qfaqFhfQTJofI3oMewvdaKTsZldFGgERsT_38KXHUkWFGOR0qlk3LFQ4sxzoPi_1OZEvMKTe168gJcVUKp3R9IogyidyfFz09T9nW-R-ABSSb"/>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h4 class="text-xl font-serif text-primary mb-2">Spice Route</h4>
+                    <p class="text-on-surface-variant text-sm font-light mb-4 line-clamp-2">Exploration of bold flavors, featuring spicy chaats and traditional snacks.</p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs uppercase tracking-widest text-tertiary font-bold">Key Dish:</span>
+                        <span class="text-xs text-on-surface font-medium italic">Spicy Aloo Dum</span>
+                    </div>
+                </div>
+            </a>
+            <!-- Kathmandu Kitchen -->
+            <a href="food-trucks.html" class="group cursor-pointer bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden transition-all hover:bg-surface-container-high hover:-translate-y-2 shadow-lg flex flex-col">
+                <div class="aspect-square bg-surface-container-highest overflow-hidden">
+                    <img alt="Kathmandu Kitchen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2u6jUfBHoJtcj5umOdZjlxMQ5goQu6UeHHreNro2xM-QAc-FaBBx658C9B25ujj3k8XMNWiZMtFNIJBTkUYvFZ2p-xH2DLXNGOBdY6Oai83qmJspCFKtmC2QJwpuHbZyISE4u_xMXwPYC-7xdEloT-N2Ia3O7WY8r1nWh_AJQlKqOO9h4gHbSReyra9bGHntlN5_-DCgq2EmHrpeVacUTUgY_l11nLDpR-5EgSCNS7eCDT1igcgNRD4B6Q4ul35XGhqSxut_S8hAN"/>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h4 class="text-xl font-serif text-primary mb-2">Kathmandu Kitchen</h4>
+                    <p class="text-on-surface-variant text-sm font-light mb-4 line-clamp-2">Bringing authentic Newari home-style cooking to a modern mobile format.</p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs uppercase tracking-widest text-tertiary font-bold">Key Dish:</span>
+                        <span class="text-xs text-on-surface font-medium italic">Choila Platter</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Gilded Divider -->
+<div class="max-w-4xl mx-auto py-12 px-6">
+    <div class="gilded-divider"></div>
+</div>
+
+<!-- Street Soul Section -->
+<section class="py-24 px-6 bg-surface-container-low">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+            <div class="max-w-xl">
+                <h2 class="text-tertiary font-serif italic text-2xl mb-2">Street Soul</h2>
+                <h3 class="text-5xl font-serif text-on-surface">The Nomadic Hearth</h3>
+            </div>
+            <p class="text-on-surface-variant max-w-xs mt-6 md:mt-0">
+                Can't make it to the Square? Our fleet of Himalayan food trucks brings the spices to your neighborhood.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[600px]">
+            <!-- Main Highlight -->
+            <div class="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-lg bg-surface-container-high shadow-xl">
+                <img alt="Food Truck Service" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-75" loading="lazy" decoding="async"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk4WX61AEJKhV3f5uONLtnV7o8q6rdcDeitrzFSTRE--iBd6IkuGr5UA7kIIESlxl2r1-HmIIggzibj3AISZX8KLNSlvvrR8M7OGf5sxjIWCMb3yX9UdNxXChAIwS64wS4MwXPlC3HphcQL6ElFrprqW1BNQ5rwYDqUN1Ldw8GOmFpTyubg09SUo9FQlDYZD5zSg8gEXdmihDWy6Sd3GDA_fuh09dQobmBLgwdBkdWb68wxSWaa8OV7GVfTgzF2EvTThB7rWjXBESr"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90"></div>
+                <div class="absolute bottom-0 p-8">
+                    <span class="bg-primary-container text-on-primary-container px-3 py-1 text-xs rounded-full mb-4 inline-block font-bold">LIVE LOCATION</span>
+                    <h4 class="text-3xl font-serif text-white mb-2">Patan Durbar Square</h4>
+                    <p class="text-stone-300 font-light">Serving signature Momos &amp; Chai until midnight.</p>
+                </div>
+            </div>
+            <!-- Secondary Item -->
+            <div class="md:col-span-2 group relative overflow-hidden rounded-lg bg-surface-container-high shadow-lg">
+                <img alt="Himalayan Grill" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-50" loading="lazy" decoding="async"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrPZmHrvPB74cdUjjnpiceLJcjOzG5tE4RVoJKOVZ3OlBZTMxYTNGFuaAqos2NUoDoYqGmiQSzQZOJkqIUgHSQNOT1-7iCKhhBSRSxl83HaESNyhMB03IrMW4ehRn8p5VMJ1KLHXJL6qA3Gh6ngXjVtnVDtNEEsbYMpUZD-Z7HmBj-XhgdK1tOHaBmUyCOr5EnCWG4l-98E0E5vN6AdslHHUjts7wMYx31f7QUWlF6dbJ2AGsqtAf4BlMz0oCPswmWkb-jgid04qpG"/>
+                <div class="absolute inset-0 flex flex-col justify-center px-8">
+                    <h4 class="text-2xl font-serif text-tertiary mb-2">The Yak Burger</h4>
+                    <p class="text-on-surface-variant font-light text-sm">Spiced with Jimbu and served with hand-cut local fries.</p>
+                </div>
+            </div>
+            <!-- Map/Location Item -->
+            <div class="group relative overflow-hidden rounded-lg bg-surface-container-highest flex flex-col items-center justify-center p-8 text-center border border-outline-variant/10">
+                <span class="material-symbols-outlined text-tertiary text-5xl mb-4" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                <h4 class="text-xl font-serif text-on-surface mb-2">Track the Truck</h4>
+                <p class="text-xs text-on-surface-variant mb-6">Real-time GPS tracking for all our mobile units.</p>
+                <button class="text-tertiary text-sm font-bold border-b border-tertiary/30 hover:border-tertiary transition-all">OPEN MAP</button>
+            </div>
+            <!-- CTA Item -->
+            <div class="group relative overflow-hidden rounded-lg bg-primary-container flex flex-col items-center justify-center p-8 text-center">
+                <h4 class="text-xl font-serif text-on-primary-container mb-4 italic">Cater Your Event</h4>
+                <p class="text-sm text-primary-fixed-dim/80 mb-6">Bring the Himalayan vibe to your private party or corporate event.</p>
+                <a href="contact.html" class="bg-surface-bright text-on-surface px-6 py-2 rounded-md text-sm font-bold shadow-lg">Inquire Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Signature Menu Section -->
+<section class="py-24 bg-surface-container-lowest">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-center font-serif text-5xl mb-16 text-on-surface">The Alchemist's <span class="text-tertiary">Selection</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Item 1 -->
+            <div class="text-center group">
+                <div class="mb-8 aspect-[3/4] overflow-hidden rounded-lg">
+                    <img alt="The Spice Route Cocktail" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFkQIAGCXMtNY4ONJlLxa8MgjBc2sLdCsNazyWN1s_HSG3RCP0MNb5i-8-w9DIR_CHL2PGPxELOPjv6u8e7b6DWbRvHj7LCIdKdBFii1B2Mo8bvZVaZDBwIkEuVNqITHdc4gcwHpTbVQSvz0skzL9iJt36q_XglBMmy6tVRlES7Jq5wE6sTFN9eaY9g93H29Y5kOamK8s6PesfD6pWlEQ7aTsrWgIkr8wg1-Guuz_Mc5KemvDt6fD8-fADAvblPEhZ--3BygrSN0SJ"/>
+                </div>
+                <h4 class="text-2xl font-serif text-on-surface mb-2 italic">The Spice Route</h4>
+                <p class="text-stone-500 text-sm leading-relaxed mb-4">Smoked cinnamon whiskey, local honey, and a dash of Timut pepper.</p>
+                <span class="text-tertiary font-bold tracking-widest text-xs">NPR 1,200</span>
+            </div>
+            <!-- Item 2 -->
+            <div class="text-center group md:-mt-12">
+                <div class="mb-8 aspect-[3/4] overflow-hidden rounded-lg border-4 border-tertiary/10">
+                    <img alt="Jhol Momo Blanc" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhZaFAo71BovShSSrmc7GLHRj_jKaoBw19_NfxdseLn60hnbJYTZcXj4W-Kk0SqqQqiWqGvUS4LWXpbIGWN5T3c1AySJDRsW1MpJImcFN9Gm_vrpd6xzQ0RraOoJXHqUwYJjl3YufY1SRdmqgm1pnBwJXwEJ-iRLZmU6lkZcrv-KFZDVPRjBsFY5sDTFdRmsbz7lu0xBOba5dWyIBs0Nqu13z1y3udguXVH7QUs_nWWoK4Lfpw8BnsBSrOZYNpY76o15RPh7JyEeUA"/>
+                </div>
+                <h4 class="text-2xl font-serif text-on-surface mb-2 italic">Jhol Momo Blanc</h4>
+                <p class="text-stone-500 text-sm leading-relaxed mb-4">Our premium dumplings bathed in a roasted sesame and heirloom tomato broth.</p>
+                <span class="text-tertiary font-bold tracking-widest text-xs">NPR 850</span>
+            </div>
+            <!-- Item 3 -->
+            <div class="text-center group">
+                <div class="mb-8 aspect-[3/4] overflow-hidden rounded-lg">
+                    <img alt="Mountain Mist Cocktail" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoG38amBucLRHuVZRL1_fNW-a9MXyI3H3QLrfBNi2K-eipDr8cwExHta1kA2otK-vdWi5hMhAgR5zWz6DbhEtbFbRdEosL8DpuCjb9rIMvRVrdBs98Uayvezl4-FiNDa81QHU5F-u5C7hu2b2YgBA074Oxi08JwSjVLrNf1Fuxlx0ExC7wFPBnUL_vPHNSSozKCrnxaV34wVnlLxcl8lcBU3IAF6An7_s8HVZvDCAnZyNSPhSc2laG3m5O9er5aALJp06oNUHxRcqp"/>
+                </div>
+                <h4 class="text-2xl font-serif text-on-surface mb-2 italic">Mountain Mist</h4>
+                <p class="text-stone-500 text-sm leading-relaxed mb-4">Gin infused with Himalayan herbs, elderflower, and lemon zest vapor.</p>
+                <span class="text-tertiary font-bold tracking-widest text-xs">NPR 1,150</span>
+            </div>
+        </div>
+        <div class="text-center mt-16">
+            <a href="menu.html" class="inline-block border border-tertiary/30 text-tertiary px-10 py-4 rounded-md font-medium hover:bg-tertiary/5 transition-all tracking-widest text-sm uppercase">
+                View Full Menu
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="w-full border-t border-stone-800/30 bg-stone-950">
+    <div class="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center text-sm">
+        <div class="text-lg font-serif text-stone-300 italic mb-6 md:mb-0">Basantapur Square</div>
+        <div class="flex flex-wrap justify-center gap-8 mb-6 md:mb-0">
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Privacy Policy</a>
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Terms of Service</a>
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="contact.html">Location</a>
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Careers</a>
+        </div>
+        <div class="text-stone-500">© 2024 Basantapur Square. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            const loader = document.getElementById('page-loader');
+            loader.classList.add('hidden');
+            loader.addEventListener('transitionend', function () {
+                loader.remove();
+                // Trigger hero text animations now that loader is gone
+                document.querySelectorAll('.word-reveal').forEach(function (el, i) {
+                    setTimeout(function () { el.classList.add('animate'); }, i * 380);
+                });
+            }, { once: true });
+        }, 2600);
+    });
+</script>
+</body>
+</html>

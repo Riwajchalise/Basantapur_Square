@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact & Booking — Basantapur Square</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "on-background": "#ede0dc",
+                    "on-error": "#690005",
+                    "tertiary": "#e9c349",
+                    "secondary-fixed": "#ffdbce",
+                    "inverse-primary": "#b02d29",
+                    "on-primary-fixed-variant": "#8e1214",
+                    "tertiary-fixed": "#ffe088",
+                    "outline-variant": "#5a403c",
+                    "primary": "#ffb4ac",
+                    "secondary-fixed-dim": "#ecbcaa",
+                    "on-secondary-fixed-variant": "#613e31",
+                    "background": "#181210",
+                    "secondary": "#ecbcaa",
+                    "outline": "#aa8984",
+                    "inverse-on-surface": "#362f2c",
+                    "surface-container-lowest": "#130d0b",
+                    "error": "#ffb4ab",
+                    "surface-container-low": "#201a18",
+                    "surface-container": "#251e1c",
+                    "surface-dim": "#181210",
+                    "surface-container-high": "#2f2826",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "surface-tint": "#ffb4ac",
+                    "on-primary-fixed": "#410002",
+                    "surface-bright": "#3f3835",
+                    "tertiary-container": "#cca730",
+                    "on-tertiary": "#3c2f00",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed": "#2e140a",
+                    "surface-variant": "#3b3331",
+                    "primary-container": "#880b11",
+                    "surface-container-highest": "#3b3331",
+                    "on-primary-container": "#ff9085",
+                    "on-tertiary-container": "#4f3e00",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "error-container": "#93000a",
+                    "on-primary": "#690007",
+                    "on-surface": "#ede0dc",
+                    "on-surface-variant": "#e3beb8",
+                    "inverse-surface": "#ede0dc",
+                    "on-secondary-container": "#daab9a",
+                    "secondary-container": "#613e31",
+                    "on-secondary": "#47291d",
+                    "surface": "#181210",
+                    "primary-fixed": "#ffdad6"
+                },
+                borderRadius: {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+                },
+                fontFamily: {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Manrope", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"]
+                }
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .gilded-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, #e9c349 50%, transparent 100%);
+        opacity: 0.3;
+    }
+    .editorial-shadow {
+        box-shadow: 0 20px 50px -20px rgba(65, 0, 2, 0.15);
+    }
+</style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-tertiary/30">
+
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-stone-950/80 backdrop-blur-xl shadow-[0_10px_30px_-15px_rgba(65,0,2,0.1)]">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
+        <a href="index.html" class="text-2xl font-serif italic text-stone-100">Basantapur Square</a>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="menu.html">Menu</a>
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="food-trucks.html">Food Truck</a>
+            <a class="text-stone-400 font-medium hover:text-amber-200 transition-colors" href="#">About</a>
+            <a class="text-amber-400 font-bold border-b border-amber-400/30 pb-1" href="contact.html">Contact</a>
+        </div>
+        <button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-medium hover:scale-105 active:scale-95 transition-all duration-300">
+            Book a Table
+        </button>
+    </div>
+</nav>
+
+<main class="pt-32 pb-20">
+    <!-- Hero Section -->
+    <header class="max-w-7xl mx-auto px-6 mb-20 text-center">
+        <span class="text-tertiary font-label tracking-[0.3em] text-xs uppercase mb-4 block">Visit Us</span>
+        <h1 class="font-headline text-5xl md:text-7xl font-light italic mb-6">Basantapur Square</h1>
+        <p class="max-w-2xl mx-auto text-on-surface-variant text-lg leading-relaxed">
+            Step into the warmth of the hearth. Located in the soul of the city, we welcome you to experience authentic Himalayan hospitality.
+        </p>
+    </header>
+
+    <!-- Main Content Bento Grid -->
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8">
+        <!-- Map Section -->
+        <div class="md:col-span-8 bg-surface-container-low rounded-xl overflow-hidden min-h-[500px] relative group border border-outline-variant/10">
+            <div class="absolute inset-0 bg-stone-900/40 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
+            <img alt="Map of Basantapur Square, Kathmandu" class="w-full h-full object-cover grayscale opacity-60"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV7-GFu_1VkCO8o9IeVENkONDCuOLsDDIfnpoHsjxyVWXWbwFvKx1O5o5KuTu2kSfeZoDjyARr8VRypQrqiLxJ6KsRL0PptMGiw2t-03ZkFO4DNQfRiL2IY-J0FqELsnGDdwDN3dn6nDU5wwhd-P9H3f8FgjTQDA4aFFWd4iZoE6-jVXjUqRktrrz1Lu4Duosm0cl1brc0j6vM0P_-JFrD9p03OsXhiD2PUtPVxJF3Jnas8Sa99pGKwisqekCUOcvLaqPo0WEvJFDH"/>
+            <div class="absolute bottom-8 left-8 z-20 bg-surface-container-highest/90 backdrop-blur-md p-6 rounded-lg editorial-shadow border border-outline-variant/20">
+                <h3 class="font-headline text-2xl italic mb-1">Our Location</h3>
+                <p class="text-on-surface-variant text-sm">Durbar Square, Kathmandu 44600, Nepal</p>
+                <button class="mt-4 text-tertiary text-xs tracking-widest uppercase flex items-center gap-2 hover:gap-4 transition-all">
+                    Get Directions <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="md:col-span-4 flex flex-col gap-8">
+            <div class="bg-surface-container-high p-8 rounded-xl flex-1 flex flex-col justify-center">
+                <h2 class="font-headline text-3xl mb-8">Reach Out</h2>
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-tertiary mt-1" style="font-variation-settings: 'FILL' 1;">call</span>
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-outline mb-1">Reservations</p>
+                            <p class="text-xl font-medium">+977 (1) 424-8899</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-tertiary mt-1" style="font-variation-settings: 'FILL' 1;">mail</span>
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-outline mb-1">Inquiries</p>
+                            <p class="text-xl font-medium">hello@basantapursquare.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-tertiary mt-1" style="font-variation-settings: 'FILL' 1;">schedule</span>
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-outline mb-1">Hours</p>
+                            <p class="text-on-surface-variant">Mon – Thu: 12pm – 10pm</p>
+                            <p class="text-on-surface-variant">Fri – Sun: 11am – 11pm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-primary-container p-8 rounded-xl text-on-primary-container editorial-shadow">
+                <h4 class="font-headline text-2xl mb-2">Private Events</h4>
+                <p class="text-sm mb-6 opacity-90 leading-relaxed">Host your next celebration in our intimate wood-carved upper lounge.</p>
+                <a class="inline-block border-b border-on-primary-container/30 pb-1 text-sm font-bold hover:text-white transition-colors" href="#">Request a Quote</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gilded Divider -->
+    <div class="max-w-4xl mx-auto my-24 px-6">
+        <div class="gilded-divider"></div>
+    </div>
+
+    <!-- Booking Section -->
+    <section class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-headline text-5xl italic mb-4">Secure Your Table</h2>
+            <p class="text-on-surface-variant">We recommend booking at least 48 hours in advance for weekend dinners.</p>
+        </div>
+        <div class="bg-surface-container p-10 md:p-16 rounded-xl border border-outline-variant/10 shadow-2xl relative overflow-hidden">
+            <!-- Decorative element -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-tertiary/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                <div class="md:col-span-2">
+                    <label class="block text-xs uppercase tracking-widest text-outline mb-2">Full Name</label>
+                    <input class="w-full bg-surface-container-highest border-0 border-b-2 border-outline-variant/30 focus:border-tertiary focus:ring-0 text-on-surface placeholder:text-outline-variant transition-colors py-4" placeholder="Mandira Shrestha" type="text"/>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-outline mb-2">Date</label>
+                    <input class="w-full bg-surface-container-highest border-0 border-b-2 border-outline-variant/30 focus:border-tertiary focus:ring-0 text-on-surface transition-colors py-4" type="date"/>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-outline mb-2">Time</label>
+                    <select class="w-full bg-surface-container-highest border-0 border-b-2 border-outline-variant/30 focus:border-tertiary focus:ring-0 text-on-surface transition-colors py-4 appearance-none">
+                        <option>18:00</option>
+                        <option>19:00</option>
+                        <option>20:00</option>
+                        <option>21:00</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-outline mb-2">Number of Guests</label>
+                    <div class="flex gap-4">
+                        <button class="flex-1 bg-surface-container-highest py-4 hover:bg-surface-bright transition-colors text-tertiary border border-outline-variant/10 rounded" type="button">2</button>
+                        <button class="flex-1 bg-tertiary text-on-tertiary py-4 font-bold rounded" type="button">4</button>
+                        <button class="flex-1 bg-surface-container-highest py-4 hover:bg-surface-bright transition-colors text-tertiary border border-outline-variant/10 rounded" type="button">6+</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-outline mb-2">Special Requests</label>
+                    <input class="w-full bg-surface-container-highest border-0 border-b-2 border-outline-variant/30 focus:border-tertiary focus:ring-0 text-on-surface placeholder:text-outline-variant transition-colors py-4" placeholder="Anniversary, dietary notes..." type="text"/>
+                </div>
+                <div class="md:col-span-2 pt-8">
+                    <button class="w-full bg-gradient-to-r from-primary-container to-primary text-on-primary-fixed py-5 rounded-lg font-bold text-lg tracking-widest uppercase editorial-shadow hover:brightness-110 active:scale-[0.98] transition-all" type="submit">
+                        Confirm Reservation
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="w-full border-t border-stone-800/30 bg-stone-950">
+    <div class="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center text-sm">
+        <div class="text-lg font-serif text-stone-300 italic mb-6 md:mb-0">Basantapur Square</div>
+        <div class="flex flex-wrap justify-center gap-8 mb-6 md:mb-0">
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Privacy Policy</a>
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Terms of Service</a>
+            <a class="text-amber-400 underline underline-offset-4 transition-colors" href="contact.html">Location</a>
+            <a class="text-stone-500 hover:text-stone-300 transition-colors" href="#">Careers</a>
+        </div>
+        <div class="text-stone-500">© 2024 Basantapur Square. All rights reserved.</div>
+    </div>
+</footer>
+
+</body>
+</html>
